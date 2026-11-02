@@ -9,10 +9,8 @@ export interface EmailSubmissionData {
   destinationCountry: string;
   visaType: string;
   travelPurpose: string;
-  preferredOffice: 'India' | 'Australia';
-  description: string;
-  contactMethod: 'WhatsApp' | 'Email' | 'Phone Call';
-}
+   description: string;
+ }
 
 export interface EmailSendResult {
   success: boolean;
@@ -21,15 +19,15 @@ export interface EmailSendResult {
   error?: string;
 }
 
-// Configured credentials for JSR World Visas / rajputkanchan601@gmail.com
+// Configured credentials for JSR World Visas / alternatepine09@gmail.com
 export const DEFAULT_SERVICE_ID =
-  (import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_4n4y6b5').trim();
+  (import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_smjc535').trim();
 export const DEFAULT_TEMPLATE_ID =
-  (import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_jvdy3lt').trim();
+  (import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_dsnvrsl').trim();
 export const DEFAULT_PUBLIC_KEY =
-  (import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'I7TL-gCA_b55drore').trim();
+  (import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'QLUWBzHH9q739ZUvo').trim();
 export const DEFAULT_RECIPIENT_EMAIL =
-  (import.meta.env.VITE_EMAILJS_RECIPIENT_EMAIL || 'rajputkanchan601@gmail.com').trim();
+  (import.meta.env.VITE_EMAILJS_RECIPIENT_EMAIL || 'alternatepine09@gmail.com').trim();
 
 export const getEmailJSConfig = () => {
   const serviceId = (
@@ -94,8 +92,6 @@ export async function sendEnquiryEmail(
     `Destination Country: ${formData.destinationCountry}`,
     `Visa Category: ${formData.visaType}`,
     `Purpose of Travel: ${formData.travelPurpose}`,
-    `Preferred Office: ${formattedOffice}`,
-    `Preferred Contact Method: ${formData.contactMethod}`,
     `Submitted At: ${submissionDate}`,
   ].join('\n');
 
@@ -103,7 +99,7 @@ export async function sendEnquiryEmail(
   const templateParams: Record<string, string> = {
     // Recipient fields
     to_email: config.recipientEmail,
-    to_name: 'Kanchan Rajput / JSR Admissions Team',
+    to_name: 'JSR Admissions Team',
     recipient_email: config.recipientEmail,
     company_email: COMPANY_CONFIG.email,
 
@@ -133,10 +129,7 @@ export async function sendEnquiryEmail(
     travel_purpose: formData.travelPurpose,
     purpose: formData.travelPurpose,
     preferred_office: formattedOffice,
-    office: formData.preferredOffice,
-    preferred_contact_method: formData.contactMethod,
-    contact_method: formData.contactMethod,
-
+   
     // Message bodies
     description: formData.description || 'Application consultation request',
     message: fullSummaryMessage,
