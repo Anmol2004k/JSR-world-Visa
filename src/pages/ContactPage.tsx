@@ -3,6 +3,7 @@ import { PageId } from "../types";
 import { COMPANY_CONFIG } from "../data/config";
 import { RemixIcon } from "../components/RemixIcon";
 import { CountryFlag } from "../components/CountryFlag";
+import { sendEnquiryEmail } from "../services/emailService";
 
 interface ContactPageProps {
   onNavigate: (page: PageId) => void;
@@ -75,7 +76,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
     if (errorMessage) setErrorMessage("");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.fullName.trim()) {
       setErrorMessage("Please enter your full name.");
@@ -96,14 +97,18 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
     setIsSubmitting(true);
     setErrorMessage("");
 
-    // Simulate secure transmission to customer management / email system
-    setTimeout(() => {
-      const generatedRef = `JSR-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
-      setReferenceId(generatedRef);
+    const generatedRef = `JSR-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
+    setReferenceId(generatedRef);
+
+    try {
+      await sendEnquiryEmail(formData, generatedRef);
+    } catch (err) {
+      console.error("Error submitting enquiry via EmailJS:", err);
+    } finally {
       setIsSubmitting(false);
       setSubmitted(true);
       window.scrollTo({ top: 380, behavior: "smooth" });
-    }, 700);
+    }
   };
 
   const handleSendWhatsAppCopy = () => {
@@ -615,106 +620,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
           <div className="p-6 sm:p-10 lg:p-12">
             {/* SUBMITTED CONFIRMATION STATE */}
             {submitted ? (
-              <div className="max-w-2xl mx-auto text-center space-y-6 py-8">
-                <div className="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner animate-pulse">
-                  <RemixIcon
-                    name="ri-checkbox-circle-fill"
-                    className="text-4xl"
-                  />
+              <div className="max-w-lg mx-auto text-center py-12 px-6 space-y-4">
+                <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto text-3xl">
+                  <RemixIcon name="ri-checkbox-circle-fill" />
                 </div>
-
-                <div className="space-y-2">
-                  <span className="inline-block px-3.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider border border-emerald-200">
-                    Enquiry Logged Successfully
-                  </span>
-                  <h3 className="font-heading font-extrabold text-2xl sm:text-3xl text-slate-900">
-                    Thank You, {formData.fullName}!
-                  </h3>
-                  <p className="text-slate-600 text-sm max-w-lg mx-auto leading-relaxed">
-                    Your enquiry has been received and securely forwarded to our
-                    designated customer management system.
-                  </p>
-                </div>
-
-                {/* Reference Card */}
-                <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 text-left space-y-4 max-w-lg mx-auto">
-                  <div className="flex items-center justify-between border-b border-slate-200 pb-3">
-                    <span className="text-xs text-slate-500 font-bold uppercase tracking-wider">
-                      Reference ID
-                    </span>
-                    <span className="font-mono font-bold text-sm text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">
-                      {referenceId}
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3 text-xs">
-                    <div>
-                      <span className="text-slate-500 block">
-                        Intended Destination:
-                      </span>
-                      <strong className="text-slate-900 font-semibold">
-                        {formData.destinationCountry}
-                      </strong>
-                    </div>
-                    <div>
-                      <span className="text-slate-500 block">
-                        Visa Category:
-                      </span>
-                      <strong className="text-slate-900 font-semibold">
-                        {formData.visaType}
-                      </strong>
-                    </div>
-                    <div>
-                      <span className="text-slate-500 block">
-                        Travel Purpose:
-                      </span>
-                      <strong className="text-slate-900 font-semibold">
-                        {formData.travelPurpose}
-                      </strong>
-                    </div>
-                    <div>
-                      <span className="text-slate-500 block">
-                        Country of Residence:
-                      </span>
-                      <strong className="text-slate-900 font-semibold">
-                        {formData.countryOfResidence}
-                      </strong>
-                    </div>
-                    <div className="col-span-2">
-                      <span className="text-slate-500 block">
-                        Contact Information:
-                      </span>
-                      <strong className="text-slate-900 font-semibold">
-                        {formData.phone} • {formData.email}
-                      </strong>
-                    </div>
-                  </div>
-
-                  <div className="p-3 bg-emerald-50/70 rounded-xl border border-emerald-200/60 text-xs text-emerald-800 flex items-start gap-2">
-                    <RemixIcon
-                      name="ri-shield-check-line"
-                      className="text-base text-emerald-600 mt-0.5 shrink-0"
-                    />
-                    <span>
-                      Our specialist team coordinated from Australia will review
-                      your submission and connect with you shortly.
-                    </span>
-                  </div>
-                </div>
-
-                {/* Forward copy via WhatsApp or reset */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+                <h3 className="font-heading font-bold text-2xl text-slate-900">
+                  Thank You!
+                </h3>
+                <p className="text-slate-600 text-base leading-relaxed">
+                  We will connect you shortly.
+                </p>
+                <div className="pt-4">
                   <button
-                    onClick={handleSendWhatsAppCopy}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all"
-                  >
-                    <RemixIcon name="ri-whatsapp-fill" className="text-base" />
-                    <span>Send Copy via WhatsApp (+91 98107 55659)</span>
-                  </button>
-
-                  <button
+                    type="button"
                     onClick={handleResetForm}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs uppercase tracking-wider transition-colors"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors"
                   >
                     <RemixIcon name="ri-refresh-line" className="text-sm" />
                     <span>Submit Another Enquiry</span>
