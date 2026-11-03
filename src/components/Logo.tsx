@@ -60,38 +60,38 @@ export const Logo: React.FC<LogoProps> = ({
 
   const isDark = theme === 'dark';
 
-  // Dimension presets for balanced, elegant, and compact corporate display
-   // Dimension presets for balanced, elegant, and compact corporate display
-  const sizeConfig = {
+ const sizeConfig = {
     sm: {
       img: 'h-[68px] w-[68px] sm:h-20 sm:w-20',
       badge: 'w-[68px] h-[68px] sm:w-20 sm:h-20',
       iconText: 'text-2xl',
-      nameText: 'text-base sm:text-lg lg:text-xl font-black tracking-tight',
-      taglineText: 'text-[11px] sm:text-xs font-bold tracking-wider',
+      // टेक्स्ट को text-xl से लेकर text-3xl तक काफी बड़ा कर दिया है
+      nameText: 'text-xl sm:text-2xl lg:text-3xl font-black tracking-tight',
+      // टैगलाइन को भी बड़ा करके text-sm कर दिया है
+      taglineText: 'text-xs sm:text-sm font-bold tracking-wider',
     },
     md: {
-      // इसे और बड़ा करके h-24 (96px) और लैपटॉप पर h-32 (128px) कर दिया है
       img: 'h-24 w-24 sm:h-32 sm:w-32', 
       badge: 'w-24 h-24 sm:w-32 sm:h-32',
-      iconText: 'text-2xl',
-      nameText: 'text-lg sm:text-xl font-bold tracking-tight',
-      taglineText: 'text-xs sm:text-sm tracking-wider',
+      iconText: 'text-3xl',
+      // नाम को text-2xl और sm:text-3xl (बहुत बड़ा और बोल्ड) कर दिया है
+      nameText: 'text-2xl sm:text-2xl font-black tracking-tight',
+      // टैगलाइन को text-sm और sm:text-base कर दिया है
+      taglineText: 'text-sm sm:text-base font-medium tracking-wider',
     },
     lg: {
       img: 'h-28 w-28 sm:h-36 sm:w-36',
       badge: 'w-28 h-28 sm:w-36 sm:h-36',
-      iconText: 'text-3xl',
-      nameText: 'text-xl sm:text-2xl font-bold tracking-tight',
-      taglineText: 'text-sm tracking-wider',
+      iconText: 'text-4xl',
+      nameText: 'text-3xl sm:text-4xl font-black tracking-tight',
+      taglineText: 'text-base tracking-wider',
     },
     xl: {
-      // यह सबसे बड़ा साइज़ है (h-40 यानी 160px)
       img: 'h-36 w-36 sm:h-40 sm:w-40',
       badge: 'w-36 h-36 sm:w-40 sm:h-40',
-      iconText: 'text-4xl',
-      nameText: 'text-2xl sm:text-3xl font-black tracking-tight',
-      taglineText: 'text-sm sm:text-base tracking-wide',
+      iconText: 'text-5xl',
+      nameText: 'text-4xl sm:text-5xl font-black tracking-tight',
+      taglineText: 'text-lg sm:text-xl tracking-wide',
     },
   }[size];
 

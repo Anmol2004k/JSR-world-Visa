@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectCountry }) =
               className="text-left cursor-pointer group focus:outline-none block"
               aria-label="JSR World Visas Home"
             >
-              <Logo theme="dark" size="sm" />
+              <Logo theme="dark" size="md" />
  
             </button>
 
