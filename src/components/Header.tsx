@@ -67,7 +67,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="text-left cursor-pointer group focus:outline-none shrink-0"
             aria-label="JSR World Visas Home"
           >
-            <Logo theme="light" size="sm" />
+            <Logo theme="light" size="md" />
           </button>
 
           {/* Desktop Links */}

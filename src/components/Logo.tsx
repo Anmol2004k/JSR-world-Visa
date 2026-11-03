@@ -61,6 +61,7 @@ export const Logo: React.FC<LogoProps> = ({
   const isDark = theme === 'dark';
 
   // Dimension presets for balanced, elegant, and compact corporate display
+   // Dimension presets for balanced, elegant, and compact corporate display
   const sizeConfig = {
     sm: {
       img: 'h-[68px] w-[68px] sm:h-20 sm:w-20',
@@ -70,27 +71,30 @@ export const Logo: React.FC<LogoProps> = ({
       taglineText: 'text-[11px] sm:text-xs font-bold tracking-wider',
     },
     md: {
-      img: 'h-16 w-16 sm:h-20 sm:w-20', 
-      badge: 'w-16 h-16 sm:w-20 sm:h-20',
-      iconText: 'text-xl',
-      nameText: 'text-base sm:text-lg font-bold tracking-tight',
-      taglineText: 'text-[10px] sm:text-[11px] tracking-wider',
-    },
-    lg: {
-      img: 'h-14 w-14 sm:h-16 sm:w-16',
-      badge: 'w-14 h-14 sm:w-16 sm:h-16',
+      // इसे और बड़ा करके h-24 (96px) और लैपटॉप पर h-32 (128px) कर दिया है
+      img: 'h-24 w-24 sm:h-32 sm:w-32', 
+      badge: 'w-24 h-24 sm:w-32 sm:h-32',
       iconText: 'text-2xl',
       nameText: 'text-lg sm:text-xl font-bold tracking-tight',
-      taglineText: 'text-xs tracking-wider',
+      taglineText: 'text-xs sm:text-sm tracking-wider',
+    },
+    lg: {
+      img: 'h-28 w-28 sm:h-36 sm:w-36',
+      badge: 'w-28 h-28 sm:w-36 sm:h-36',
+      iconText: 'text-3xl',
+      nameText: 'text-xl sm:text-2xl font-bold tracking-tight',
+      taglineText: 'text-sm tracking-wider',
     },
     xl: {
-      img: 'h-20 w-20 sm:h-24 sm:w-24',
-      badge: 'w-20 h-20 sm:w-24 sm:h-24',
-      iconText: 'text-3xl',
-      nameText: 'text-xl sm:text-2xl font-black tracking-tight',
-      taglineText: 'text-xs sm:text-sm tracking-wide',
+      // यह सबसे बड़ा साइज़ है (h-40 यानी 160px)
+      img: 'h-36 w-36 sm:h-40 sm:w-40',
+      badge: 'w-36 h-36 sm:w-40 sm:h-40',
+      iconText: 'text-4xl',
+      nameText: 'text-2xl sm:text-3xl font-black tracking-tight',
+      taglineText: 'text-sm sm:text-base tracking-wide',
     },
   }[size];
+
 
   return (
     <div className={`flex items-center gap-3.5 sm:gap-4 ${className}`}>

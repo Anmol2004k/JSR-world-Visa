@@ -244,7 +244,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectCountry }) =
             <div className="space-y-2.5 text-xs text-slate-300">
               <div>
                 <p className="font-semibold text-white">India Head Office</p>
-                <p className="text-[11px] text-slate-400">Shop 1, Rodeo Drive, Kundli 131029 (Sonipat)</p>
+                <p className="text-[11px] text-slate-400">Shop 1, Rodeo Drive, Kundli 131029 (Sonipat) Haryana, INDIA</p>
                 <a href={`tel:${COMPANY_CONFIG.indiaPhoneRaw}`} className="text-[11px] text-amber-300 hover:underline">
                   {COMPANY_CONFIG.indiaPhone}
                 </a>
@@ -252,7 +252,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectCountry }) =
 
               <div>
                 <p className="font-semibold text-white">Australia Branch Office</p>
-                <p className="text-[11px] text-slate-400">60 Corrigan Ave, Brooklyn 3012</p>
+                <p className="text-[11px] text-slate-400">60 Corrigan Avenue, Brooklyn 3012 (Victoria) AUSTRALIA</p>
                 <a href={`tel:${COMPANY_CONFIG.australiaPhoneRaw}`} className="text-[11px] text-amber-300 hover:underline">
                   {COMPANY_CONFIG.australiaPhone}
                 </a>
