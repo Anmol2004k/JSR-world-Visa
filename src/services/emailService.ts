@@ -19,15 +19,15 @@ export interface EmailSendResult {
   error?: string;
 }
 
-// Configured credentials for JSR World Visas / alternatepine09@gmail.com
+// Configured credentials for JSR World Visas /  jsrworldvisas@gmail.com
 export const DEFAULT_SERVICE_ID =
-  (import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_smjc535').trim();
+  (import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_z39nghn').trim();
 export const DEFAULT_TEMPLATE_ID =
-  (import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_dsnvrsl').trim();
+  (import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_6s7fvg4').trim();
 export const DEFAULT_PUBLIC_KEY =
-  (import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'QLUWBzHH9q739ZUvo').trim();
+  (import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'a2Xmbw9OK25YEBsAR').trim();
 export const DEFAULT_RECIPIENT_EMAIL =
-  (import.meta.env.VITE_EMAILJS_RECIPIENT_EMAIL || 'alternatepine09@gmail.com').trim();
+  (import.meta.env.VITE_EMAILJS_RECIPIENT_EMAIL || 'jsrworldvisas@gmail.com').trim();
 
 export const getEmailJSConfig = () => {
   const serviceId = (
