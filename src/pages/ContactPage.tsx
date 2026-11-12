@@ -107,7 +107,6 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
     } finally {
       setIsSubmitting(false);
       setSubmitted(true);
-      window.scrollTo({ top: 380, behavior: "smooth" });
     }
   };
 
@@ -620,21 +619,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
           <div className="p-6 sm:p-10 lg:p-12">
             {/* SUBMITTED CONFIRMATION STATE */}
             {submitted ? (
-              <div className="max-w-lg mx-auto text-center py-12 px-6 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto text-3xl">
+              <div className="max-w-lg mx-auto text-center py-16 px-6 space-y-4 min-h-[380px] flex flex-col items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto text-3xl shadow-xs border border-emerald-100">
                   <RemixIcon name="ri-checkbox-circle-fill" />
                 </div>
-                <h3 className="font-heading font-bold text-2xl text-slate-900">
+                <h3 className="font-heading font-bold text-2xl sm:text-3xl text-slate-900">
                   Thank You!
                 </h3>
-                <p className="text-slate-600 text-base leading-relaxed">
-                  We will connect you shortly.
+                <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-md">
+                  We will connect with you soon.
                 </p>
                 <div className="pt-4">
                   <button
                     type="button"
                     onClick={handleResetForm}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs sm:text-sm transition-colors cursor-pointer"
                   >
                     <RemixIcon name="ri-refresh-line" className="text-sm" />
                     <span>Submit Another Enquiry</span>
